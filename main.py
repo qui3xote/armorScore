@@ -13,7 +13,7 @@ def cleanOldScore(note):
 def main():
     parser = argparse.ArgumentParser(description="Score armor for potential usefulness")
     parser.add_argument("filename", type=str, help="DIM export file to be processed.")
-    parser.add_argument("-o", "--outputfile", type=str, default=None, help="Where to store the results.")
+    parser.add_argument("-o", "--outputfile", type=str, help="Where to store the results.")
     parser.add_argument("-b", "--includeblue", action="store_true", default=False,
                         help="Incude uncommon (blue) items in the scoring.")
     parser.add_argument("-t", "--tierstats", action="store_true", default=False,
@@ -24,7 +24,7 @@ def main():
                         default, armorScore runs 'prefer'.""")
     #parser.add_argument("-p", "--pinstats", type=str, default=None, nargs='+', choices=['I','M','D','S','Rc','Rs','Class'],
     #                     help="Only consider stat combinations that include the chosen stat(s).")
-    parser.add_argument("-l", "--limit", type=int, default=None, help="For testing only. Limit number of rows iterated")
+    #parser.add_argument("-l", "--limit", type=int, default=None, help="For testing only. Limit number of rows iterated")
     parser.add_argument("-c", "--clear", action="store_true", default=False,
                         help="Just clean out armorscores from notes column and exit")
     args = parser.parse_args()
