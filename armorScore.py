@@ -1,6 +1,6 @@
-import pandas as pd
 import itertools
-
+import numpy as np
+import pandas as pd
 
 class armorScorer():
     def __init__(self, armordf, exoticMethod='prefer', statpins=None):
@@ -12,6 +12,7 @@ class armorScorer():
                     'Intellect (Base)', 'Strength (Base)', 'Total (Base)']
         self.armorTypes = ['Helmet', 'Chest Armor', 'Gauntlets', 'Leg Armor']
         self.exoticMethod = exoticMethod
+        self.statpins = statpins
 
         for r in self.required:
             if r not in self.armorDF.columns.values:
@@ -68,7 +69,7 @@ class armorScorer():
             nonExoticDF = self.appendStats(nonExoticDF)
             self.permutedFrames = [pd.concat([exoticDF, nonExoticDF], axis=0)]
 
-    def score(self):
+    def score(self, tierstats):
         if not hasattr(self, 'permutedFrames'):
             self.permuteArmor()
 
@@ -82,6 +83,13 @@ class armorScorer():
 
             for c in zip(self.combinedStats, self.combinedStatNames):
                 frame[c[1]] = pd.to_numeric(frame[c[0]].sum(axis=1))
+
+            if tierstats is True:
+                frame[self.stats] = frame[self.stats].divide(10).apply(np.floor).multiply(10)
+
+            for c in zip(self.combinedStats, self.combinedStatNames):
+                frame[c[1]] = pd.to_numeric(frame[c[0]].sum(axis=1))
+
 
             for stat in self.stats + self.combinedStatNames:
                 winners = frame.loc[[frame[stat].idxmax()]]
