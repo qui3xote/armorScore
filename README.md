@@ -6,10 +6,7 @@ armorScore works by looking at every possible armor loadout and every combinatio
 
 
 #Known Issues
-1. The results look good to me, but I can’t guarantee anything. *It's still up to you to decide whether to keep or scrap your items.* 
-2. I currently include all armor rarities in the ranking - if you have a lot of blue that you plan to shard, it could throw off your scores.
-3. I don’t make special provisions for exotics (yet). That means a couple things: First, some of my ‘winning’ combos may include 2 exotics, which isn’t great and throws off the scores. Second, most of the time players want to build around their exotics - there may be pieces of armor that aren’t winners as a whole, but could be winners when we limit to combos that have at least one exotic in them.
-4. I don’t account for ’tiers’ yet. Meaning that the winning combo has the highest absolute score, but there might be another loadout with the exact same tiers, just 1 point lower. This makes the ‘culling’ more aggressive.
+The results look good to me, but I can’t guarantee anything. *It's still up to you to decide whether to keep or scrap your items.* 
 
 #Using armorScore
 
@@ -17,16 +14,15 @@ Using armorScore currently requires a working python 3 environment with pandas i
 
   -h, --help show this help message and exit
 
-  -f FILENAME DIM export file to be processed.
-
   -o OUTPUTFILE  Where to store the results.
 
+  -t use tiers instead of raw scores when selecting winners. Results in more ties and therefore more armor gets a score above zero.
 
-#Future Release Ideas:
+  -b include blue items in scoring. By default armorScore only looks at legendary and exotic items.
 
-'Exclude Blue' filter
-Pin Exotics: Only consider combinations that include an exotic
-Specify stat combos or specific stats (flag)
-Rules based tagging?
-Flag to clean out ArmorScore from notes
-on re-run, overwrite existing scores
+  -e Pin,Prefer,Ignore How to handle exotic items. 
+        Ignore will treat all loadouts equally regardless of whether they contain an exotic.
+        Pin will only look at loadouts containing an exotic item.
+        Prefer will score twice. Once for all loadouts, then once again for loadouts containing an exotic.
+
+  -c will remote armorScores from the notes column and writeout a new file without running any scores.
