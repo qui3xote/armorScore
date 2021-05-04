@@ -9,7 +9,7 @@ import pandas as pd
 def cleanOldScore(note):
     return re.sub("{armorscore[^}]*}", '', note, flags=re.I)
 
-
+#test comment
 def main():
     parser = argparse.ArgumentParser(description="Score armor for potential usefulness")
     parser.add_argument("filename", type=str, help="DIM export file to be processed.")

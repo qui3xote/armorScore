@@ -1,7 +1,7 @@
 import itertools
 import numpy as np
 import pandas as pd
-
+#test comment
 class armorScorer():
     def __init__(self, armordf, exoticMethod='prefer', statpins=None):
         self.armorDF = armordf.set_index('Id')
